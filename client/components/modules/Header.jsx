@@ -21,14 +21,14 @@ export  class PageHeader extends Component{
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a className="navbar-brand" href="#">光影世界</a>
+                        <a className="navbar-brand" href="#">QIQI</a>
                     </div>
 
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav">
-                            <li><Link to={`/simple`} >精彩影评 </Link></li>
-                            <li> <Link to={`/table`} >人物精选 </Link></li>
-                            <li><Link to={`/ipc`} > 灵感分享</Link></li>
+                            <li><Link to={`/login`} >登陆 </Link></li>
+                            <li> <Link to={`/personal`} >个人信息 </Link></li>
+
 
                         </ul>
                     </div>
