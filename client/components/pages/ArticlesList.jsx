@@ -49,7 +49,11 @@ class ArticlesList extends React.Component{
     render(){
         const {bindInfo} = this.props;
         const {authData}  = this.props.userInfo;
-        const {tele = ""}  = JSON.parse(authData);
+        let tele = ''
+        if(authData){
+             tele  = JSON.parse(authData).tele;
+        }
+
         return( <div>
                 <div className="container">
                     {
