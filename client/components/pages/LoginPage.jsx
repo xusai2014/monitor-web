@@ -1,5 +1,5 @@
 import React from 'react';
-import {loginForm,getVerfication} from "../../actions/actions";
+import {loginForm,getVerfication,updateToken} from "../../actions/actions";
 import { connect } from 'react-redux';
 class LoginPage extends React.Component{
 
@@ -25,6 +25,24 @@ class LoginPage extends React.Component{
         if (nextProps.token) {
             this.props.history.push('/personal');
         }
+    }
+    componentWillMount() {
+        const authData = localStorage.getItem('authData');
+        // var cookieString = documents.cookie;
+        // var cookieName = 'token'
+        // let cookie = '';
+        // var start = cookieString.indexOf('token=');
+        // if (start == -1) // 找不到
+        //     cookie='';
+        // start += cookieName.length + 1;
+        // var end = cookieString.indexOf(';', start);
+        // if (end == -1) cookie=  cookieString.substring(start);
+        // cookie =  cookieString.substring(start, end);
+        if (authData) {
+            this.props.dispatch(updateToken(authData));
+            this.props.history.push('/personal');
+        }
+
     }
     render(){
         return (
