@@ -11,9 +11,13 @@ class ArticlesList extends React.Component{
         }
     }
     componentWillMount(){
+
         const {authData}  = this.props.userInfo;
-        const tele  = JSON.parse(authData).tele;
-        this.props.dispatch(getUserInfo(tele));
+        if(authData){
+            const tele  = JSON.parse(authData).tele;
+            this.props.dispatch(getUserInfo(tele));
+        }
+
     }
     insertBindInfo(){
 
