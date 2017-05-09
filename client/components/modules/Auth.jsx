@@ -17,9 +17,11 @@ export default function (ComposedComponent) {
             // cookie =  cookieString.substring(start, end);
             if (!authData) {
                 this.props.history.push('/login');
+            } else {
+                this.props.dispatch(updateToken(authData));
+                this.props.history.push('/personal');
             }
-            this.props.dispatch(updateToken(authData));
-            this.props.history.push('/personal');
+
         }
         componentDidMount(){
 
