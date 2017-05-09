@@ -19,24 +19,26 @@ class ArticlesList extends React.Component{
         }
 
     }
-    insertBindInfo(){
+    insertBindInfo(tele){
 
-        const {account,tele} = this.refs;
-        if (!account.value || !tele.value){
+        const {account} = this.refs;
+        if (!account.value ){
             this.setState({inputWarinig:"请正确填写表单"});
             return;
-        }
-
-        if (account.value && tele.value){
-            if(!(/^1[34578]\d{9}$/.test(tele.value))){
-                this.setState({inputWarinig:"请正确填写手机号"});
-                return false;
-            }
+        } else {
             this.props.dispatch(insertUserInfo({
                 account:account.value,
-                tele:tele.value
+                tele:tele
             }))
         }
+
+        // if (account.value){
+            // if(!(/^1[34578]\d{9}$/.test(tele.value))){
+            //     this.setState({inputWarinig:"请正确填写手机号"});
+            //     return false;
+            // }
+
+        // }
     }
     componentWillReceiveProps(next){
         if(this.props.insertSuccess != next.insertSuccess){
@@ -64,7 +66,7 @@ class ArticlesList extends React.Component{
                     <div>
                         账户<input type="text" ref="account"/>
                         手机号<span>{tele}</span>
-                        <button onClick={()=>{this.insertBindInfo()}}>绑定</button>
+                        <button onClick={()=>{this.insertBindInfo(tele)}}>绑定</button>
                         {this.state.inputWarinig ?<span>提示信息:{this.state.inputWarinig}</span>:"" }
                     </div>
                 </div>

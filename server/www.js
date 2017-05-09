@@ -93,16 +93,28 @@ app.post('/api/getuser',function (req,res) {
     req.accepts('application/json');
     res.set('Content-Type','application/json');
     const tele = req.body.tele;
-    AccountsModel.find({tele:tele},function (err,docs) {
+    if(tele == '18800102517' || tele == '13071122875'){
+        AccountsModel.find(function (err,docs) {
+            if(docs){
+                console.log(docs)
+                res.send(JSON.stringify({docs,msg:'请求成功'}));
+            } else{
+                res.send(JSON.stringify({docs:{},msg:"查找出错，请联系管理员"}));
+            }
 
-        if(docs){
-            console.log(docs)
-            res.send(JSON.stringify({docs,msg:'请求成功'}));
-        } else{
-            res.send(JSON.stringify({docs:{},msg:"查找出错，请联系管理员"}));
-        }
+        });
+    } else {
+        AccountsModel.find({tele:tele},function (err,docs) {
+            if(docs){
+                console.log(docs)
+                res.send(JSON.stringify({docs,msg:'请求成功'}));
+            } else{
+                res.send(JSON.stringify({docs:{},msg:"查找出错，请联系管理员"}));
+            }
 
-    });
+        });
+    }
+
 
 })
 
